@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Program jQuery Mobile</title>
+	<meta name = "viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href=jquery.mobile-1.4.5.css />
+	<script src=demos/js/jquery.js></script>
+	<script src=jquery.mobile-1.4.5.js></script>
+	<script type="text/javascript">
+		function changepage(){
+			var x = document.getElementById("select").value;
+    		document.getElementById("paging").innerHTML = "<a href=" + x + "> go to " + x + "</a>";
+		}
+		function changepage1(){
+			var x = document.getElementById("select1").value;
+    		document.getElementById("paging1").innerHTML = "<a href=" + x + "> go to " + x + "</a>";
+		}
+		function changepage2(){
+			var x = document.getElementById("select2").value;
+    		document.getElementById("paging2").innerHTML = "<a href=" + x + "> go to " + x + "</a>";
+		}
+		function hitung(){
+			var angka = document.getElementById("angka").value;
+			if(angka == ""){
+				alert("Pastikan input terisi.")
+			} else {
+				var f = factorial(angka);
+				var p = pangkat(angka);
+				document.getElementById("output").innerHTML = "Faktorial : " + f + "<br> Pangkat : " + p;
+			}
+			
+		}
+
+		function factorial(num) {
+		    var newNum = num;
+		    var total;
+		    var numArray = [];
+		    for (i = 0; num > i; i++) {
+		        total = num - i;
+		        numArray.push(total);
+		    };
+		    console.log(numArray);
+		    for (j = 0; numArray.length > j; j++) {
+		        if (numArray[j] == newNum) {
+		            newNum = numArray[j];
+		        } else {
+		            newNum = newNum * numArray[j];
+		            
+		        }
+		    };
+		    return newNum;
+		};
+		function pangkat(num){
+			var newNum = num*num;
+			return newNum;
+		}
+
+		function show(){
+			var rgb = document.getElementById("rgb").value;
+			if(rgb == ""){
+				alert("Try again :)")
+			} else {
+				document.getElementById("color").style.color = rgb;
+			}
+		}
+		$( document ).on( "click", ".show-page-loading-msg", function() {
+    var $this = $( this ),
+        theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+        msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+        textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+        textonly = !!$this.jqmData( "textonly" );
+        html = $this.jqmData( "html" ) || "";
+    $.mobile.loading( "show", {
+            text: msgText,
+            textVisible: textVisible,
+            theme: theme,
+            textonly: textonly,
+            html: html
+    });
+})
+.on( "click", ".hide-page-loading-msg", function() {
+    $.mobile.loading( "hide" );
+});
+	</script>
+	<style type="text/css">
+
+/* Show priority 2 at 480px (30em x 16px) */
+@media screen and (min-width: 55em) {
+   .my-custom-class  th.ui-table-priority-3,
+   .my-custom-class td.ui-table-priority-3 {
+     display: table-cell;
+   }
+}
+p {
+    width: 100%; 
+    word-wrap: break-word;
+}
+@media ( min-width: 35em ) {
+
+	/* wrap on wide viewports once open */
+
+	.ui-panel-page-content-open.ui-panel-page-content-position-left {
+		margin-right: 17em;
+	}
+	.ui-panel-page-content-open.ui-panel-page-content-position-right {
+		margin-left: 17em;
+	}
+	.ui-panel-page-content-open {
+		width: auto;
+	}
+
+	/* disable "dismiss" on wide viewports */
+	.ui-panel-dismiss {
+		display: none;
+	}
+
+	/* same as the above but for panels with display mode "push" only */
+
+	.ui-panel-page-content-open.ui-panel-page-content-position-left.ui-panel-page-content-display-push {
+		margin-right: 17em;
+	}
+	.ui-panel-page-content-open.ui-panel-page-content-position-right.ui-panel-page-content-display-push {
+		margin-left: 17em;
+	}
+	.ui-panel-page-content-open.ui-panel-page-content-display-push {
+		width: auto;
+	}
+
+	.ui-panel-dismiss-display-push {
+		display: none;
+	}
+}
+	</style>
+</head>
+<body>
+<div data-role="page" id="satu">
+	<div data-role="header">
+		<div class="ui-field-contain">
+		    <label for="select-native-2">Page :</label>
+		    <select id="select" data-mini="true" onchange="changepage()">
+				<option value="">Page</option>
+		        <option value="#satu">The 1st Option</option>
+		        <option value="#dua">The 2nd Option</option>
+		        <option value="#tiga">The 3rd Option</option>
+		    </select>
+		</div>
+	</div>
+	<div data-role="content" id="paging">
+		<h2>Calculator</h2>
+
+	    <form>
+	        <input type="number" class="calc-input" id="angka"/>
+	        <button type="button" class="btn btn-primary" onclick="hitung()">Hitung</button>
+	        <br>
+	        <br>Answer:
+	        <br>
+	        <label class="calc-output" id="output"/>
+	    </form>
+	</div>
+	<p id="paging"></p>
+</div>
+
+<div data-role="page" id="dua">
+	<div data-role="header">
+		<div class="ui-field-contain">
+		    <label for="select-native-2">Page :</label>
+		    <select id="select1" data-mini="true" onchange="changepage1()">
+				<option value="">Page</option>
+		        <option value="#satu">The 1st Option</option>
+		        <option value="#dua">The 2nd Option</option>
+		        <option value="#tiga">The 3rd Option</option>
+		    </select>
+		</div>
+	</div>
+	<div data-role="content">
+		<form>
+			<h2> RGB Color</h2>
+			<input type="text" id="rgb" />
+			<button onclick="show()">Show</button>
+			<br>
+			<h1 id="color"> Hello~ </h1>
+		</form>
+	</div>
+	<p id="paging1"></p>
+</div>
+
+<div data-role="page" id="tiga">
+	<div data-role="header">
+		<div class="ui-field-contain">
+		    <label for="select-native-2">Page :</label>
+		    <select id="select2" data-mini="true" onchange="changepage2()">
+				<option value="">Page</option>
+		        <option value="#satu">The 1st Option</option>
+		        <option value="#dua">The 2nd Option</option>
+		        <option value="#tiga">The 3rd Option</option>
+		    </select>
+		</div>
+	</div>
+	<div data-role="content">
+		<table data-role="table" data-mode="columntoggle" id="my-table" class="ui-responsive">
+			<thead>
+			    <tr>
+			      <th data-priority="3" data-colstart="1" class="ui-table-priority-3 ui-table-cell-visible">Hari ke-1</th>
+			      <th data-priority="3" data-colstart="2" class="ui-table-priority-3 ui-table-cell-visible">Hari ke-2</th>
+			      <th data-priority="3" data-colstart="3" class="ui-table-priority-3 ui-table-cell-visible">Hari ke-3</th>
+			    </tr>
+			</thead>
+			<tbody>
+				<td class="ui-table-priority-3 ui-table-cell-visible"><p>
+					Pada hari pertama, kita belajar mengenai apa itu github dan bagaimana cara penggunaannya. Di kelas kita mempelajarinya melalui try.github.io. Disini kita diberikan visualisasi bagaimana cara menggunakan github dengan baik. Setelah itu, kita juga membuat rangkuman mengenai apa yang telah dicoba di website tersebut. Untuk pertemuan pertama ini, kami diberikan tugas untuk mencoba github sendiri melalui cmd, bash, dan GitGUI.
+				</p></td>
+			    <td class="ui-table-priority-3 ui-table-cell-visible"><p>
+			    	Hari kedua, kita mempelajari bagaimana cara menggunakan jQuery Mobile. jQuery ini sangatlah mirip dengan jQuery yang biasanya kita gunakan di php ataupun html biasa. Namun, ada beberapa hal yang berbeda dari jQuery yang ada.
+			    </p></td>
+			    <td class="ui-table-priority-3 ui-table-cell-visible"><p>
+			    	Hari ketiga, kita menggunakan angularJS. AngularJS ini berfungsi sebagai salahs atu framework yang paling populer dan banyak digunakan oleh developer untuk mengembangkan aplikasi yang baru ataupun yang sudah ada.
+			    </p></td>
+			</tbody>
+		</table>
+		<button class="show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Icon</button>
+		<button class="hide-page-loading-msg" data-inline="true" data-icon="delete">Hide</button>
+		<br>
+	    <label for="slider-1">Slider:</label>
+	    <input type="range" name="slider-1" id="slider-1" min="0" max="100" 	value="50">
+		<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">Click me!</a>
+		<div data-role="popup" id="popupBasic">
+		<p>I'm a popup</p>
+		</div>
+		<div data-role="panel" id="mypanel">
+		    <p>Keterangan :</p>
+		    <p>
+		  		Test 1 Pemrograman Perangkat Mobile <br>
+		  		Nama : Debby Meliani Prayogo<br>
+		  		NRP : 26416016
+		    </p>
+		    <a href="#my-header" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini">Close panel</a>
+		</div>
+		<a href="#mypanel" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini">see panel</a>
+	</div>
+	<p id="paging2"></p>
+</div>
+</body>
+</html>
